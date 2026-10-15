@@ -66,3 +66,4 @@ ios/.symlinks/
 /BERTmodel/createBertModel/results/
 /BERTmodel/createBertModel/saved_model/
 /BERTmodel/createBertModel/task_classifier_model/
+/BERTmodel/createBertModel/task_classifier.tflite
