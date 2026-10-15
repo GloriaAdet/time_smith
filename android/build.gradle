@@ -1,0 +1,32 @@
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+// // added to see if lstar error goes away
+// ext {
+//     compileSdkVersion   = 35
+//     targetSdkVersion    = 35
+//     appCompatVersion    = "1.7.0"
+// }
+
+rootProject.buildDir = "../build"
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+
+    // // added to see if lstar error goes away
+    // afterEvaluate {
+    //     android {
+    //         compileSdkVersion 35
+    //     }
+    // }
+}
+subprojects {
+    project.evaluationDependsOn(":app")
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}

@@ -1,0 +1,19 @@
+import 'package:tflite_flutter/tflite_flutter.dart';
+
+Future<String> classifyTask(String inputText) async {
+  // Load the model
+  final interpreter = await Interpreter.fromAsset('task_classifier.tflite');
+
+  // Preprocess the input
+  final input = preprocessInput(inputText); // Implement tokenization if needed
+  
+  // Allocate tensors
+  var output = List<double>.filled(1, 0).reshape([1, 1]);
+
+  // Run inference
+  interpreter.run(input, output);
+
+  // Postprocess the result
+  final predictedIndex = output[0].toInt();
+  return postprocessOutput(predictedIndex); // Map index to task type
+}
